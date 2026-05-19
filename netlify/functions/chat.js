@@ -1,12 +1,12 @@
-export default async (req) => {
-  if (req.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 });
+exports.handler = async function (event) {
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method not allowed' };
   }
 
-  const { message } = await req.json();
+  const { message } = JSON.parse(event.body);
 
   if (!message) {
-    return new Response(JSON.stringify({ error: 'No message provided' }), { status: 400 });
+    return { statusCode: 400, body: JSON.stringify({ error: 'No message provided' }) };
   }
 
   const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -46,12 +46,9 @@ If you don't know something specific (like exact pricing), say we'd love to chat
   const data = await response.json();
   const reply = data?.content?.[0]?.text ?? "Sorry, I couldn't get a response. Please try again!";
 
-  return new Response(JSON.stringify({ reply }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' }
-  });
-};
-
-export const config = {
-  path: '/netlify/functions/chat'
+  return {
+    statusCode: 200,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ reply })
+  };
 };
