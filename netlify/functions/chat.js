@@ -44,16 +44,6 @@ If you don't know something specific (like exact pricing), say we'd love to chat
   });
 
   const data = await response.json();
-
-  if (!response.ok) {
-    console.error('Anthropic API error:', JSON.stringify(data));
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ reply: 'API Error: ' + (data?.error?.message ?? JSON.stringify(data)) })
-    };
-  }
-
   const reply = data?.content?.[0]?.text ?? "Sorry, I couldn't get a response. Please try again!";
 
   return {
