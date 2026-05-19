@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elevate Athletics — Sports Training for Young Athletes</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #0f172a;
+      --navy-light: #1e293b;
+      --orange: #f97316;
+      --orange-dark: #ea6c0a;
+      --white: #ffffff;
+      --gray: #94a3b8;
+      --light: #f8fafc;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--navy);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      padding: 0 5%;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--orange);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      background: var(--orange);
+      color: var(--white) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--orange-dark);
+      color: var(--white) !important;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+      padding-top: 68px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 650px;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(249, 115, 22, 0.15);
+      color: var(--orange);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.2);
+      transition: border-color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.5);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 0.2rem;
+    }
+
+    /* SECTION SHARED */
+    section {
+      padding: 6rem 5%;
+    }
+
+    .section-tag {
+      display: inline-block;
+      color: var(--orange);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: #64748b;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ABOUT */
+    .about {
+      background: var(--light);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    .about-image {
+      background: var(--navy);
+      border-radius: 20px;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(249,115,22,0.2), transparent);
+    }
+
+    .about-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .about-point {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .point-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(249, 115, 22, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .point-text h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .point-text p {
+      font-size: 0.9rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* PROGRAMS */
+    .programs {
+      background: var(--white);
+    }
+
+    .programs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .program-card {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 2px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+
+    .program-card:hover {
+      border-color: var(--orange);
+      transform: translateY(-4px);
+    }
+
+    .program-card.featured {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .program-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .program-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .program-card.featured h3 {
+      color: var(--white);
+    }
+
+    .program-card p {
+      font-size: 0.9rem;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .program-card.featured p {
+      color: var(--gray);
+    }
+
+    .program-badge {
+      display: inline-block;
+      background: rgba(249,115,22,0.1);
+      color: var(--orange);
+      border-radius: 6px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .program-card.featured .program-badge {
+      background: rgba(249,115,22,0.2);
+    }
+
+    /* COACHES */
+    .coaches {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .coaches .section-title {
+      color: var(--white);
+    }
+
+    .coaches .section-subtitle {
+      color: var(--gray);
+    }
+
+    .coaches-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .coach-card {
+      background: var(--navy-light);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: border-color 0.2s;
+    }
+
+    .coach-card:hover {
+      border-color: rgba(249,115,22,0.4);
+    }
+
+    .coach-avatar {
+      width: 80px;
+      height: 80px;
+      background: rgba(249,115,22,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1rem;
+    }
+
+    .coach-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .coach-sport {
+      color: var(--orange);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .coach-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      background: var(--light);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .stars {
+      color: var(--orange);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-card p {
+      font-size: 0.95rem;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: white;
+    }
+
+    .author-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .author-role {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .contact-info p {
+      color: #64748b;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-item-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(249,115,22,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+      outline: none;
+      background: var(--light);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--orange);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      font-family: inherit;
+    }
+
+    .form-submit:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      color: var(--gray);
+      padding: 3rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer .logo {
+      font-size: 1.2rem;
+    }
+
+    footer p {
+      font-size: 0.85rem;
+    }
+
+    /* CHAT WIDGET */
+    .chat-widget {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+    }
+
+    .chat-toggle {
+      width: 60px;
+      height: 60px;
+      background: var(--orange);
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .chat-toggle:hover {
+      transform: scale(1.1);
+      background: var(--orange-dark);
+    }
+
+    .chat-window {
+      position: absolute;
+      bottom: 75px;
+      right: 0;
+      width: 360px;
+      height: 500px;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      display: none;
+    }
+
+    .chat-window.open {
+      display: flex;
+    }
+
+    .chat-header {
+      background: var(--navy);
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .chat-avatar {
+      width: 38px;
+      height: 38px;
+      background: rgba(249,115,22,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .chat-header-text h4 {
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .chat-header-text p {
+      color: var(--gray);
+      font-size: 0.75rem;
+    }
+
+    .online-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .message {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-end;
+    }
+
+    .message.user {
+      flex-direction: row-reverse;
+    }
+
+    .message-bubble {
+      max-width: 75%;
+      padding: 0.7rem 1rem;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .message.bot .message-bubble {
+      background: var(--light);
+      color: var(--navy);
+      border-bottom-left-radius: 4px;
+    }
+
+    .message.user .message-bubble {
+      background: var(--orange);
+      color: var(--white);
+      border-bottom-right-radius: 4px;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 0.7rem 1rem;
+      background: var(--light);
+      border-radius: 14px;
+      border-bottom-left-radius: 4px;
+      width: fit-content;
+    }
+
+    .typing-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--gray);
+      border-radius: 50%;
+      animation: typing 1.2s infinite;
+    }
+
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-6px); opacity: 1; }
+    }
+
+    .chat-input-area {
+      padding: 1rem;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .chat-input:focus {
+      border-color: var(--orange);
+    }
+
+    .chat-send {
+      width: 40px;
+      height: 40px;
+      background: var(--orange);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .chat-send:hover {
+      background: var(--orange-dark);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .programs-grid,
+      .coaches-grid,
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .chat-window { width: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Elevate<span>Athletics</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#coaches">Coaches</a></li>
+      <li><a href="#contact" class="nav-cta">Book a Session</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🏆 #1 Youth Sports Training in the Area</div>
+      <h1>Train Harder.<br />Rise <span>Further.</span></h1>
+      <p>We develop the next generation of athletes with personalized coaching, proven training programs, and a culture built around growth, discipline, and winning.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Book a Free Session</a>
+        <a href="#programs" class="btn-secondary">View Programs</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Athletes Trained</div>
+        </div>
+        <div>
+          <div class="stat-number">8+</div>
+          <div class="stat-label">Sports Offered</div>
+        </div>
+        <div>
+          <div class="stat-number">92%</div>
+          <div class="stat-label">Athlete Improvement Rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <span class="section-tag">Who We Are</span>
+      <div class="about-grid">
+        <div class="about-image">🏅</div>
+        <div>
+          <h2 class="section-title">Built to Develop Young Champions</h2>
+          <p class="section-subtitle">Elevate Athletics was founded with one mission — give young athletes the coaching, tools, and mindset they need to reach their full potential, regardless of where they're starting from.</p>
+          <div class="about-points">
+            <div class="about-point">
+              <div class="point-icon">🎯</div>
+              <div class="point-text">
+                <h4>Personalized Training Plans</h4>
+                <p>Every athlete gets a plan built around their specific sport, position, and goals — not a generic one-size-fits-all program.</p>
+              </div>
+            </div>
+            <div class="about-point">
+              <div class="point-icon">📊</div>
+              <div class="point-text">
+                <h4>Progress Tracking</h4>
+                <p>We measure everything — speed, strength, skill — so athletes and parents can see real improvement over time.</p>
+              </div>
+            </div>
+            <div class="about-point">
+              <div class="point-icon">🤝</div>
+              <div class="point-text">
+                <h4>Small Group Sizes</h4>
+                <p>We keep groups small so every athlete gets real attention from their coach, not just a number on a roster.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="programs" id="programs">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div class="programs-header">
+        <div>
+          <span class="section-tag">What We Offer</span>
+          <h2 class="section-title">Programs for Every Athlete</h2>
+        </div>
+        <p class="section-subtitle" style="max-width: 300px;">From beginners to varsity-level competitors, we have a program that fits.</p>
+      </div>
+      <div class="programs-grid">
+        <div class="program-card">
+          <div class="program-icon">⚡</div>
+          <h3>Speed & Agility</h3>
+          <p>Explosive movement training to improve first-step quickness, change of direction, and overall athleticism across all sports.</p>
+          <span class="program-badge">Ages 8–18</span>
+        </div>
+        <div class="program-card featured">
+          <div class="program-icon">🏋️</div>
+          <h3>Strength & Conditioning</h3>
+          <p>Age-appropriate strength training built to improve power, reduce injury risk, and build the physical foundation every serious athlete needs.</p>
+          <span class="program-badge">Most Popular</span>
+        </div>
+        <div class="program-card">
+          <div class="program-icon">🎯</div>
+          <h3>Sport-Specific Skills</h3>
+          <p>Position and sport-specific coaching in football, basketball, soccer, baseball, and more — focused on the exact skills that matter in your game.</p>
+          <span class="program-badge">Ages 10–18</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACHES -->
+  <section class="coaches" id="coaches">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <span class="section-tag">Our Team</span>
+      <h2 class="section-title">Coaches Who've Been There</h2>
+      <p class="section-subtitle">Every coach on our staff has competed at a high level and is passionate about helping the next generation succeed.</p>
+      <div class="coaches-grid">
+        <div class="coach-card">
+          <div class="coach-avatar">🏈</div>
+          <h3>Marcus Johnson</h3>
+          <div class="coach-sport">Football & Speed Training</div>
+          <p>Former D1 wide receiver with 6 years of youth coaching experience. Specializes in route running, catching, and speed development.</p>
+        </div>
+        <div class="coach-card">
+          <div class="coach-avatar">🏀</div>
+          <h3>Deja Williams</h3>
+          <div class="coach-sport">Basketball & Conditioning</div>
+          <p>Ex-college point guard and certified strength coach. Focuses on basketball IQ, ball handling, and building complete athletes.</p>
+        </div>
+        <div class="coach-card">
+          <div class="coach-avatar">⚽</div>
+          <h3>Carlos Rivera</h3>
+          <div class="coach-sport">Soccer & Agility</div>
+          <p>Former semi-pro soccer player with a background in sports science. Specializes in footwork, agility, and positional awareness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <span class="section-tag">Results</span>
+      <h2 class="section-title">What Parents & Athletes Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"My son went from getting cut from his middle school team to starting on varsity as a sophomore. The coaches here are the real deal."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">👨</div>
+            <div>
+              <div class="author-name">David T.</div>
+              <div class="author-role">Parent of a football athlete</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"I've been training here for two years and my 40-yard dash went from 5.1 to 4.7. Coach Marcus pushes you but always in the right way."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">🧑</div>
+            <div>
+              <div class="author-name">Tyler R.</div>
+              <div class="author-role">Athlete, age 16</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"I love how personal the sessions are. My daughter gets actual coaching, not just drills. She's more confident on and off the court."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">👩</div>
+            <div>
+              <div class="author-name">Michelle K.</div>
+              <div class="author-role">Parent of a basketball athlete</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="section-tag">Get Started</span>
+          <h2 class="section-title">Book a Free First Session</h2>
+          <p>Not sure which program is right for your athlete? Book a free introductory session and we'll build a plan around their goals.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-item-icon">📍</div>
+              <span>123 Champions Blvd, Your City, ST 00000</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📞</div>
+              <span>(555) 123-4567</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">✉️</div>
+              <span>hello@elevateathletics.com</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">🕐</div>
+              <span>Mon–Sat: 6am – 8pm</span>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleFormSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Parent / Guardian Name</label>
+              <input type="text" placeholder="John Smith" required />
+            </div>
+            <div class="form-group">
+              <label>Athlete's Name</label>
+              <input type="text" placeholder="Tyler Smith" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="john@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" placeholder="(555) 000-0000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Athlete's Age & Primary Sport</label>
+            <input type="text" placeholder="e.g. 14 years old, Football" required />
+          </div>
+          <div class="form-group">
+            <label>What are their goals?</label>
+            <textarea placeholder="Tell us what they're working toward..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Book Free Session →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo">Elevate<span>Athletics</span></div>
+    <p>© 2025 Elevate Athletics. All rights reserved.</p>
+    <p>Built with ❤️ for young athletes everywhere.</p>
+  </footer>
+
+  <!-- CHAT WIDGET -->
+  <div class="chat-widget">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <div class="chat-avatar">🏆</div>
+        <div class="chat-header-text">
+          <h4>Elevate Athletics AI</h4>
+          <p><span class="online-dot"></span>Online — Ask me anything</p>
+        </div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot">
+          <div class="message-bubble">Hey! 👋 I'm the Elevate Athletics assistant. Ask me about our programs, pricing, coaches, or how to get your athlete started!</div>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input class="chat-input" id="chatInput" type="text" placeholder="Ask a question..." onkeydown="handleKey(event)" />
+        <button class="chat-send" onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+    <button class="chat-toggle" id="chatToggle" onclick="toggleChat()">💬</button>
+  </div>
+
+  <script>
+    // Chat toggle
+    function toggleChat() {
+      const win = document.getElementById('chatWindow');
+      const btn = document.getElementById('chatToggle');
+      win.classList.toggle('open');
+      btn.textContent = win.classList.contains('open') ? '✕' : '💬';
+    }
+
+    // Send message on Enter key
+    function handleKey(e) {
+      if (e.key === 'Enter') sendMessage();
+    }
+
+    // Handle contact form
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = '✅ Submitted! We\'ll be in touch soon.';
+      btn.style.background = '#16a34a';
+      btn.disabled = true;
+    }
+
+    // Send chat message
+    async function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const messages = document.getElementById('chatMessages');
+      const text = input.value.trim();
+      if (!text) return;
+
+      // Add user message
+      messages.innerHTML += `
+        <div class="message user">
+          <div class="message-bubble">${escapeHtml(text)}</div>
+        </div>
+      `;
+      input.value = '';
+      scrollToBottom();
+
+      // Show typing indicator
+      const typingId = 'typing-' + Date.now();
+      messages.innerHTML += `
+        <div class="message bot" id="${typingId}">
+          <div class="typing-indicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        </div>
+      `;
+      scrollToBottom();
+
+      try {
+        const res = await fetch('/.netlify/functions/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text })
+        });
+
+        const data = await res.json();
+        document.getElementById(typingId).remove();
+
+        messages.innerHTML += `
+          <div class="message bot">
+            <div class="message-bubble">${escapeHtml(data.reply)}</div>
+          </div>
+        `;
+        scrollToBottom();
+      } catch (err) {
+        document.getElementById(typingId).remove();
+        messages.innerHTML += `
+          <div class="message bot">
+            <div class="message-bubble">Sorry, something went wrong. Please try again!</div>
+          </div>
+        `;
+        scrollToBottom();
+      }
+    }
+
+    function scrollToBottom() {
+      const messages = document.getElementById('chatMessages');
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+  </script>
+
+</body>
+</html>
